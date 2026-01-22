@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00ff88">
+    <title>Level Up Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' fill='%230a0a0a'/%3E%3Cpath d='M50 100 L96 150 L142 100 Z' fill='%2300ff88'/%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader"></div>
+        <h2 class="loading-text">Level Up</h2>
+    </div>
+    
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand" aria-label="Level Up Tracker">LEVEL UP TRACKER</div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-page="dashboard" aria-label="Dashboard" aria-current="page">Dashboard</button>
+                <button class="nav-btn" data-page="habits" aria-label="Habits">Habits</button>
+                <button class="nav-btn" data-page="progress" aria-label="Progress">Progress</button>
+                <button class="nav-btn" data-page="rewards" aria-label="Rewards">Rewards</button>
+                <button class="nav-btn" data-page="settings" aria-label="Settings">Settings</button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Bottom Navigation -->
+        <nav class="bottom-nav" role="navigation" aria-label="Mobile navigation">
+            <button class="nav-btn active" data-page="dashboard" aria-label="Dashboard">
+                <i aria-hidden="true">📊</i>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-btn" data-page="habits" aria-label="Habits">
+                <i aria-hidden="true">✅</i>
+                <span>Habits</span>
+            </button>
+            <button class="nav-btn" data-page="progress" aria-label="Progress">
+                <i aria-hidden="true">📈</i>
+                <span>Progress</span>
+            </button>
+            <button class="nav-btn" data-page="rewards" aria-label="Rewards">
+                <i aria-hidden="true">🏆</i>
+                <span>Rewards</span>
+            </button>
+            <button class="nav-btn" data-page="settings" aria-label="Settings">
+                <i aria-hidden="true">⚙️</i>
+                <span>Settings</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page active">
+                <div class="dashboard-grid">
+                    <div class="card stats-card">
+                        <h2>Your Level</h2>
+                        <div class="level-display">
+                            <span class="level-number">Level <span id="current-level">1</span></span>
+                            <div class="level-badge" id="level-badge">Beginner</div>
+                        </div>
+                    </div>
+
+                    <div class="card xp-card">
+                        <h2>XP Progress</h2>
+                        <div class="xp-bar-container">
+                            <div class="xp-bar">
+                                <div class="xp-progress" id="xp-progress"></div>
+                            </div>
+                            <span class="xp-text"><span id="current-xp">0</span>/<span id="xp-needed">100</span> XP</span>
+                        </div>
+                    </div>
+
+                    <div class="card streak-card">
+                        <h2>Daily Streak</h2>
+                        <div class="streak-display">
+                            <span class="streak-number" id="streak-count">0</span>
+                            <span class="streak-label">DAYS</span>
+                        </div>
+                    </div>
+
+                    <div class="card quote-card">
+                        <h2>Motivation</h2>
+                        <div class="quote-container">
+                            <p id="motivational-quote">"Success is the sum of small efforts repeated day in and day out."</p>
+                        </div>
+                    </div>
+
+                    <div class="card today-progress-card">
+                        <h2>Today's Progress</h2>
+                        <div class="progress-circle">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" id="today-progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100" />
+                                <text x="18" y="20.35" class="percentage" id="today-progress-percent">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Habits Page -->
+            <section id="habits" class="page">
+                <div class="habits-container">
+                    <h1>Daily Habits</h1>
+                    <div class="habits-list">
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="wake-up">
+                                <input type="checkbox" id="wake-up" data-xp="5" aria-label="Wake up on time">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Wake up on time</span>
+                            </label>
+                            <span class="xp-value" aria-label="5 XP">+5 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="green-tea">
+                                <input type="checkbox" id="green-tea" data-xp="5" aria-label="Green tea or hot water">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Green tea / hot water</span>
+                            </label>
+                            <span class="xp-value" aria-label="5 XP">+5 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="breakfast">
+                                <input type="checkbox" id="breakfast" data-xp="10" aria-label="Breakfast completed">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Breakfast completed</span>
+                            </label>
+                            <span class="xp-value" aria-label="10 XP">+10 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="fruits-snack">
+                                <input type="checkbox" id="fruits-snack" data-xp="5" aria-label="Fruits snack">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Fruits snack</span>
+                            </label>
+                            <span class="xp-value" aria-label="5 XP">+5 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="lunch">
+                                <input type="checkbox" id="lunch" data-xp="10" aria-label="Lunch followed">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Lunch followed</span>
+                            </label>
+                            <span class="xp-value" aria-label="10 XP">+10 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="evening-drink">
+                                <input type="checkbox" id="evening-drink" data-xp="5" aria-label="Evening tea or coffee plus nuts">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Evening tea/coffee + nuts</span>
+                            </label>
+                            <span class="xp-value" aria-label="5 XP">+5 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="pre-workout">
+                                <input type="checkbox" id="pre-workout" data-xp="5" aria-label="Pre-workout banana">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Pre-workout banana</span>
+                            </label>
+                            <span class="xp-value" aria-label="5 XP">+5 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="gym">
+                                <input type="checkbox" id="gym" data-xp="20" aria-label="Gym or workout done">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Gym / workout done</span>
+                            </label>
+                            <span class="xp-value" aria-label="20 XP">+20 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="dinner">
+                                <input type="checkbox" id="dinner" data-xp="10" aria-label="Dinner with no rice and no oil">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Dinner (no rice, no oil)</span>
+                            </label>
+                            <span class="xp-value" aria-label="10 XP">+10 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-slider" for="water-intake">
+                                <span class="habit-text">Water intake (3-4L)</span>
+                                <input type="range" id="water-intake" min="0" max="4" step="0.25" value="0" aria-label="Water intake in liters">
+                                <span class="slider-value" id="water-value">0L</span>
+                            </label>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="sleep">
+                                <input type="checkbox" id="sleep" data-xp="10" aria-label="Slept before 11 PM">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">Slept before 11 PM</span>
+                            </label>
+                            <span class="xp-value" aria-label="10 XP">+10 XP</span>
+                        </div>
+                        
+                        <div class="habit-item">
+                            <label class="habit-checkbox" for="no-junk">
+                                <input type="checkbox" id="no-junk" data-xp="15" aria-label="No junk food">
+                                <span class="checkmark"></span>
+                                <span class="habit-text">No junk food</span>
+                            </label>
+                            <span class="xp-value" aria-label="15 XP">+15 XP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Submit Habits Button -->
+                <div class="submit-habits-container">
+                    <button id="submit-habits-btn" class="submit-habits-btn" aria-label="Submit today's habits for XP">Submit Today's Habits</button>
+                </div>
+            </section>
+
+            <!-- Progress Page -->
+            <section id="progress" class="page">
+                <div class="progress-container">
+                    <h1>Weekly Progress</h1>
+                    
+                    <div class="weekly-stats">
+                        <div class="stat-box">
+                            <h3>Days Completed</h3>
+                            <div class="stat-number" id="days-completed">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Days Missed</h3>
+                            <div class="stat-number" id="days-missed">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Completion Rate</h3>
+                            <div class="stat-number" id="completion-rate">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="weekly-chart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div class="weight-inputs">
+                        <div class="input-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" placeholder="Enter weight">
+                        </div>
+                        <div class="input-group">
+                            <label for="waist">Waist (cm)</label>
+                            <input type="number" id="waist" placeholder="Enter waist measurement">
+                        </div>
+                        <div class="input-group">
+                            <label for="energy">Energy Level</label>
+                            <select id="energy">
+                                <option value="1">Very Low</option>
+                                <option value="2">Low</option>
+                                <option value="3" selected>Medium</option>
+                                <option value="4">High</option>
+                                <option value="5">Very High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rewards Page -->
+            <section id="rewards" class="page">
+                <div class="rewards-container">
+                    <h1>Rewards & Badges</h1>
+                    <div class="badges-grid" id="badges-container">
+                        <!-- Badges will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Page -->
+            <section id="settings" class="page">
+                <div class="settings-container">
+                    <h1>Settings</h1>
+                    
+                    <div class="setting-item">
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Dark Mode</span>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <button id="reset-week-btn" class="btn-danger">Reset Week Progress</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <button id="export-data-btn" class="btn-secondary">Export Data</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <button id="import-data-btn" class="btn-secondary">Import Data</button>
+                    </div>
+                    
+                    <div class="data-info">
+                        <p>Total XP Earned: <span id="total-xp-display">0</span></p>
+                        <p>Overall Streak: <span id="overall-streak-display">0</span> days</p>
+                        <p>Habits Completed: <span id="habits-completed-display">0</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Watermark -->
+    <div id="watermark" class="watermark">
+        <a href="https://www.instagram.com/ismail_.7x?igsh=MWFhbHc0aWVpMGJ1Yw==" target="_blank" rel="noopener noreferrer">Made by ismailkkaa</a>
+    </div>
+
+    <!-- Level Up Animation -->
+    <div id="level-up-animation" class="level-up-animation">
+        <div class="level-up-content">
+            <h2>LEVEL UP!</h2>
+            <p>You reached Level <span id="new-level-display">2</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
